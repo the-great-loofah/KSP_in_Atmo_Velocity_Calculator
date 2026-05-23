@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,10 +12,10 @@ namespace rocket
         //=======================================CONSTRUCTORS=======================================
         public double G = 9.81;
         public double Velocity = 0;
-        public double Mass;
+        public double Mass; //in tons
         public double MassLoss;
-        public double Time;
-        public double Drag;
+        public double Time; //in seconds
+        public double Drag; //drag coefficient of leading tip(s)
         public double Thrust;
 
         public Rocket() //control conditions
@@ -32,7 +33,7 @@ namespace rocket
             MassLoss = massLoss;
             Time = time;
             Drag = drag;
-            Thrust = engine.DisplayThrust();
+            Thrust = engine.GetThrust();
         }
         //=========================================METHODS=============================================
         public void rocketStats()
@@ -51,14 +52,24 @@ namespace rocket
         }
 
     }
+    
+
     internal class Program
     {
+
         static void Main(string[] args)
         {
+
             Engine f = new Flea();
 
-            Rocket r = new Rocket(1, 1, 1, 1, f);
-            Console.WriteLine(r.Thrust);
+            Dictionary<string, Engine> e = new Dictionary<string, Engine>//()
+            { 
+                { "flea", f }
+            };
+            //e.Add("flea", f);
+
+             e["flea"].DisplayStats();
+             e["flea"].DisplayThrust();
         }
     }
 }
