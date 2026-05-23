@@ -24,7 +24,7 @@ namespace rocket
         public Rocket() //control conditions
         {
             WetMass = 2341;
-            MassLoss = 131.25;
+            MassLoss = 119.32;
             Time = 9;
             Drag = 0.3;
             Thrust = 162909;
