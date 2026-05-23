@@ -15,7 +15,6 @@ namespace rocket
         public double MassLoss;
         public double Drag; //drag coefficient of leading tip(s)
         public double Thrust;
-        public double DryMass;
         public string Name;
         public string EngineType;
         public double BurnTime;
