@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace rocket
 {
+    //====================================PARENT CLASS===============================
     public abstract class Engine
     {
         protected string Type;
@@ -30,7 +31,7 @@ namespace rocket
             return -1;
         }
     }
-
+    //=====================================================SRB'S=================================================
     public class Flea : Engine
     {
         private new string Type = "solid rocket booster/SRB";
