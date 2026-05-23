@@ -28,6 +28,9 @@ namespace rocket
             Rocket r = new Rocket();
             r.rocketStats();
 
+            TipShape c = new Cone();
+            c.DisplayDrag();
+
         }
     }
 }

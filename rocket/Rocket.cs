@@ -20,6 +20,7 @@ namespace rocket
         public string Name;
         public string EngineType;
         public double BurnTime;
+        public double FuelMass;
 
         public Rocket() //control conditions
         {
@@ -36,26 +37,27 @@ namespace rocket
             BurnTime = f.GetBurnTime();
         }
 
-        public Rocket(double mass, double massLoss, double time, double drag, double dryMass, Engine engine) //overload
+        public Rocket(double mass, double massLoss, double time, double dryMass, Engine engine, TipShape tip) //overload
         {
             WetMass = mass;
             MassLoss = massLoss;
             Time = time;
-            Drag = drag;
             DryMass = dryMass;
 
+            Drag = tip.GetDrag();
             Thrust = engine.GetThrust();
             Name = engine.GetName();
             EngineType = engine.GetEngineType();
             BurnTime = engine.GetBurnTime();
+            FuelMass = engine.GetFuelMass();
         }
         //-------------------------------------METHODS-------------------------------------------
         public void rocketStats()
         {
             Console.WriteLine($"The mass of the rocket is {WetMass}kg/{WetMass / 1000} tons");
             Console.WriteLine($"This rocket is powered by a {Name} {EngineType}");
-            Console.WriteLine($"This stage will burn for {BurnTime} seconds");
-            Console.WriteLine($"The final velocity is roughly... {CalculateFinalVelocity()} m/s ");
+            Console.WriteLine($"This stage will burn for {Math.Round(BurnTime,2)} seconds");
+            Console.WriteLine($"The final velocity is roughly... {Math.Round(CalculateFinalVelocity(),2)} m/s ");
         }
 
         public double CalculateFinalVelocity()
