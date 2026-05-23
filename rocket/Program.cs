@@ -21,10 +21,12 @@ namespace rocket
             };
             //e.Add("flea", f);
 
-             e["flea"].DisplayStats();
-             e["flea"].DisplayThrust();
+             //e["flea"].DisplayStats();
+             //e["flea"].DisplayThrust();
 
-            Rocket rocket = new Rocket(100, 100, 100, 100, e["flea"]);
+            //Rocket rocket = new Rocket(100, 100, 100, 100, 100, e["flea"]); //placeholder
+            Rocket r = new Rocket();
+            r.rocketStats();
 
         }
     }
