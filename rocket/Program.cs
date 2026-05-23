@@ -15,6 +15,9 @@ namespace rocket
 
             Engine f = new Flea();
 
+            TipShape c = new Cone();
+            c.DisplayDrag();
+
             Dictionary<string, Engine> e = new Dictionary<string, Engine>//()
             { 
                 { "flea", f }
@@ -25,11 +28,15 @@ namespace rocket
              //e["flea"].DisplayThrust();
 
             //Rocket rocket = new Rocket(100, 100, 100, 100, 100, e["flea"]); //placeholder
-            Rocket r = new Rocket();
+            Rocket r = new Rocket(2341, e["flea"], c);
             r.rocketStats();
 
-            TipShape c = new Cone();
-            c.DisplayDrag();
+            Console.WriteLine("");
+
+            Rocket r2 = new Rocket();
+            r2.rocketStats();
+
+            
 
         }
     }

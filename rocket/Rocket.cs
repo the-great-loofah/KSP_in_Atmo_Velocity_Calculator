@@ -13,7 +13,6 @@ namespace rocket
         public double Velocity = 0;
         public double WetMass; //in Kg
         public double MassLoss;
-        public double Time; //in seconds
         public double Drag; //drag coefficient of leading tip(s)
         public double Thrust;
         public double DryMass;
@@ -26,7 +25,6 @@ namespace rocket
         {
             WetMass = 2341;
             MassLoss = 119.32;
-            Time = 9;
             Drag = 0.3;
             Thrust = 162909;
 
@@ -37,12 +35,12 @@ namespace rocket
             BurnTime = f.GetBurnTime();
         }
 
-        public Rocket(double mass, double massLoss, double time, double dryMass, Engine engine, TipShape tip) //overload
+        public Rocket(double mass, Engine engine, TipShape tip) //overload
         {
             WetMass = mass;
-            MassLoss = massLoss;
-            Time = time;
-            DryMass = dryMass;
+            
+            
+            //DryMass = dryMass;
 
             Drag = tip.GetDrag();
             Thrust = engine.GetThrust();
@@ -50,6 +48,7 @@ namespace rocket
             EngineType = engine.GetEngineType();
             BurnTime = engine.GetBurnTime();
             FuelMass = engine.GetFuelMass();
+            MassLoss = engine.GetFuelMass() / engine.GetBurnTime();
         }
         //-------------------------------------METHODS-------------------------------------------
         public void rocketStats()
@@ -62,7 +61,7 @@ namespace rocket
 
         public double CalculateFinalVelocity()
         {
-            for (int i = 0; i < Time; i++)
+            for (int i = 0; i < BurnTime; i++)
             {
                 Velocity = Velocity + ((Thrust - (WetMass - MassLoss * i) * G - (Drag * (Velocity * Velocity)) + (MassLoss * Velocity)) / (WetMass - (MassLoss * i)));
             }
