@@ -20,6 +20,9 @@ namespace rocket
         public double BurnTime;
         public double FuelMass;
 
+        public double TimeDelta = 0.25; //calculation happens 4 times a second hopefully improving accuracy
+        
+
         public Rocket() //control conditions
         {
             WetMass = 2341;
@@ -60,9 +63,11 @@ namespace rocket
 
         public double CalculateFinalVelocity()
         {
-            for (int i = 0; i < BurnTime; i++)
+            double timeInterval = 1 / TimeDelta; //multiplies the number of loops to maintain accuracy
+
+            for (int i = 0; i < BurnTime*timeInterval; i++)
             {
-                Velocity = Velocity + ((Thrust - (WetMass - MassLoss * i) * G - (Drag * (Velocity * Velocity)) + (MassLoss * Velocity)) / (WetMass - (MassLoss * i)));
+                Velocity = Velocity + (((Thrust - (WetMass - MassLoss * (i/timeInterval)) * G - (Drag * (Velocity * Velocity)) + (MassLoss * Velocity)) / (WetMass - (MassLoss * (i/timeInterval))))*TimeDelta);
             }
             return Velocity;
             //Console.WriteLine(Velocity);
