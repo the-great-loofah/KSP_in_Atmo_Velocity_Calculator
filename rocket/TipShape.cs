@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,6 +10,7 @@ namespace rocket
     public abstract class TipShape
     {
         protected double _DragCoEff;
+        protected string _Name;
 
         public virtual void DisplayDrag()
         {
@@ -19,11 +21,17 @@ namespace rocket
         {
             return 0;
         }
+
+        public virtual string GetName()
+        {
+            return "0";
+        }
     }
     //===========================================SHAPES==========================
     public class Cone : TipShape
     {
         private new double _DragCoEff = 0.3;
+        private new string _Name = "Cone";
         public override void DisplayDrag()
         {
             Console.WriteLine($"Drag of this shape is {_DragCoEff}");
@@ -32,6 +40,11 @@ namespace rocket
         public override double GetDrag()
         {
             return _DragCoEff;
+        }
+
+        public override string GetName() 
+        {
+            return _Name;
         }
     }
 }

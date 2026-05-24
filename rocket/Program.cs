@@ -12,29 +12,31 @@ namespace rocket
 
         static void Main(string[] args)
         {
+            //=========================DEBUG=======================================
+            //Engine f = new Flea();
 
-            Engine f = new Flea();
+            //TipShape c = new Cone();
+            ////c.DisplayDrag();
 
-            TipShape c = new Cone();
-            c.DisplayDrag();
+            //Dictionary<string, Engine> e = new Dictionary<string, Engine>//()
+            //{ 
+            //    { "flea", f }
+            //};
+            ////e.Add("flea", f);
 
-            Dictionary<string, Engine> e = new Dictionary<string, Engine>//()
-            { 
-                { "flea", f }
-            };
-            //e.Add("flea", f);
+            // //e["flea"].DisplayStats();
+            // //e["flea"].DisplayThrust();
 
-             //e["flea"].DisplayStats();
-             //e["flea"].DisplayThrust();
+            
+            //Rocket r = new Rocket(2341, e["flea"], c);
+            //r.rocketStats();
 
-            //Rocket rocket = new Rocket(100, 100, 100, 100, 100, e["flea"]); //placeholder
-            Rocket r = new Rocket(2341, e["flea"], c);
-            r.rocketStats();
+            //Console.WriteLine("");
 
-            Console.WriteLine("");
-
-            Rocket r2 = new Rocket();
-            r2.rocketStats();
+            //Rocket r2 = new Rocket();
+            //r2.rocketStats();
+            //========================================================================
+            UserInterface u = new UserInterface();
 
             
 
