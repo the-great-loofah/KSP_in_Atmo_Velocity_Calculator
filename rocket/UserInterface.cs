@@ -14,10 +14,10 @@ namespace rocket
         private double _mass;
         private string _engineInput;
         private string _tipInput;
+        private Rocket r = new Rocket();
         
         public UserInterface()
         {
-            
             StartUi();
         }
 
@@ -26,7 +26,6 @@ namespace rocket
             PopulateEngines();
             PopulateTips();
             GetInput();
-
         }
 
         private void PopulateEngines()
@@ -41,25 +40,59 @@ namespace rocket
             _TipShape.Add(cone.GetName(), cone);
         }
 
+        private Engine SelectEngine()
+        {
+            do {
+                Console.WriteLine($"Please select the SRB type on this rocket from this list...");
+                foreach (var i in _Engine)
+                {
+                    Console.WriteLine(i.Key);
+                }
+                _engineInput = Console.ReadLine().ToLower();
+
+                if (_Engine.ContainsKey(_engineInput))
+                {
+                    Console.WriteLine($"You have selected the {_engineInput}");
+                }
+                else
+                {
+                    Console.WriteLine($"{_engineInput} does not exist");
+                }
+            }while (!_Engine.ContainsKey(_engineInput));
+
+            return _Engine[_engineInput];
+        }
+
+        private TipShape SelectTip()
+        {
+            do
+            {
+                Console.WriteLine($"Select the shape of the tip of the rocket from this list");
+                foreach (var i in _TipShape)
+                {
+                    Console.WriteLine(i.Key);
+                }
+                _tipInput = Console.ReadLine().ToLower();
+
+                if(_TipShape.ContainsKey(_tipInput))
+                {
+                    Console.WriteLine($"You have selected a {_tipInput}");
+                }
+                else
+                {
+                    Console.WriteLine($"{_tipInput} does not exist");
+                }
+
+            } while (!_Engine.ContainsKey(_tipInput));
+
+            return _TipShape[_tipInput];
+        }
+
         private void GetInput()
         {
-            Console.WriteLine($"Please select the SRB type on this rocket from this list...");
-            foreach (var i in _Engine)
-            {
-                Console.WriteLine(i.Key);
-            }
-            _engineInput = Console.ReadLine().ToLower();
 
-            Console.WriteLine($"You have selected the {_engineInput}");
-
-            Console.WriteLine($"Select the shape of the tip of the rocket from this list");
-            foreach(var i in _TipShape)
-            {
-                Console.WriteLine(i.Key);
-            }
-            _tipInput = Console.ReadLine().ToLower();
-
-            Console.WriteLine($"You have selected a {_tipInput}");
+            Engine e = SelectEngine();
+            TipShape t = SelectTip();
 
             Console.WriteLine("What is the total mass of the rocket? (in kilograms)");
             _mass = Convert.ToDouble(Console.ReadLine());
