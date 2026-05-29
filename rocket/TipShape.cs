@@ -31,7 +31,7 @@ namespace rocket
     public class Cone : TipShape
     {
         private new double _DragCoEff = 0.3;
-        private new string _Name = "Cone";
+        private new string _Name = "cone";
         public override void DisplayDrag()
         {
             Console.WriteLine($"Drag of this shape is {_DragCoEff}");

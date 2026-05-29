@@ -14,7 +14,7 @@ namespace rocket
         private double _mass;
         private string _engineInput;
         private string _tipInput;
-        private Rocket r = new Rocket();
+        
         
         public UserInterface()
         {
@@ -83,9 +83,24 @@ namespace rocket
                     Console.WriteLine($"{_tipInput} does not exist");
                 }
 
-            } while (!_Engine.ContainsKey(_tipInput));
+            } while (!_TipShape.ContainsKey(_tipInput));
 
             return _TipShape[_tipInput];
+        }
+
+        private double InputMass()
+        {
+            string massInput;
+            do
+            {
+
+                Console.WriteLine("What is the total mass of the rocket? (in kilograms)");
+                massInput = Console.ReadLine();
+
+            } while (!double.TryParse(massInput.ToString(), out _mass));
+
+            return _mass;
+;
         }
 
         private void GetInput()
@@ -94,8 +109,11 @@ namespace rocket
             Engine e = SelectEngine();
             TipShape t = SelectTip();
 
-            Console.WriteLine("What is the total mass of the rocket? (in kilograms)");
-            _mass = Convert.ToDouble(Console.ReadLine());
+            Rocket r = new Rocket(InputMass(), e, t);
+
+            r.rocketStats();
+
+
         }
     }
 }
