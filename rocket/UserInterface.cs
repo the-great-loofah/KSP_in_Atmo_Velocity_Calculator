@@ -11,6 +11,7 @@ namespace rocket
     {
         private Dictionary<string, Engine> _Engine = new Dictionary<string,Engine>();
         private Dictionary<string, TipShape> _TipShape = new Dictionary<string, TipShape>();
+
         private double _mass;
         private string _engineInput;
         private string _tipInput;
@@ -83,7 +84,7 @@ namespace rocket
                     Console.WriteLine($"{_tipInput} does not exist");
                 }
 
-            } while (!_TipShape.ContainsKey(_tipInput));
+            }while (!_TipShape.ContainsKey(_tipInput));
 
             return _TipShape[_tipInput];
         }
@@ -100,20 +101,16 @@ namespace rocket
             } while (!double.TryParse(massInput.ToString(), out _mass));
 
             return _mass;
-;
         }
 
         private void GetInput()
         {
-
             Engine e = SelectEngine();
             TipShape t = SelectTip();
 
             Rocket r = new Rocket(InputMass(), e, t);
 
             r.rocketStats();
-
-
         }
     }
 }
