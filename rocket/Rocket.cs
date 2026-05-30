@@ -19,6 +19,8 @@ namespace rocket
         public string EngineType;
         public double BurnTime;
         public double FuelMass;
+        public double Isp;
+        public double Dv;
 
         public double TimeDelta = 0.25; //calculation happens 4 times a second hopefully improving accuracy
         
@@ -51,6 +53,7 @@ namespace rocket
             BurnTime = engine.GetBurnTime();
             FuelMass = engine.GetFuelMass();
             MassLoss = engine.GetFuelMass() / engine.GetBurnTime();
+            Isp = engine.GetIsp();
         }
         //-------------------------------------METHODS-------------------------------------------
         public void rocketStats()
@@ -71,6 +74,12 @@ namespace rocket
             }
             return Velocity;
             //Console.WriteLine(Velocity);
+        }
+
+        public double CalculateDeltaV()
+        {
+            Dv = Isp * 9.81 * Math.Log(WetMass / (WetMass - FuelMass));
+            return Dv;
         }
 
     }

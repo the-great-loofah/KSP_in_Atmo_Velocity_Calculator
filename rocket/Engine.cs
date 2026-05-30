@@ -53,6 +53,11 @@ namespace rocket
         {
             return 0;
         }
+
+        public virtual double GetIsp()
+        {
+            return 0;
+        }
     }
     //=====================================================SRB'S=================================================
     //-----------------------------------------------------FLEA--------------------------------------------------
@@ -102,6 +107,11 @@ namespace rocket
         public override double GetFuelMass()
         {
             return _FuelMass;
+        }
+
+        public override double GetIsp()
+        {
+            return _Isp;
         }
     }
 
